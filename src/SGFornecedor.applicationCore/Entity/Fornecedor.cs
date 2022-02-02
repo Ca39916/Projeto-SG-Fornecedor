@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SGFornecedor.applicationCore.Entity
 {
-    internal class Fornecedor
+    public class Fornecedor
     {
         public Guid Id { get; set; }
         public bool Active { get; set; }
