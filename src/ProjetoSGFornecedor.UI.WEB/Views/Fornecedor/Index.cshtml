@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ProjetoSGFornecedor.UI.WEB.ViewModels.FornecedorViewModel>
+@{
+    ViewData["Title"] = "Fornecedor";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Fornecedores</h1> 
+    <br>     
+    <input type="button" class="btn btn-outline-secondary" value="Novo Fornecedor Fisico" onclick="location.href='@Url.Action("NovoFornecedorFisico", "Fornecedor")'" />  @*Botão que leva pra tela de cadastro de novo funcionario*@    
+    <input type="button" class="btn btn-outline-secondary" value="Novo Fornecedor Juridico" onclick="location.href='@Url.Action("NovoFornecedorJuridico", "Fornecedor")'" /> @*Botão que leva pra tela de cadastro de novo funcionario*@
+    <br>
+    <br>    
+</div> 
+@*<select class="form-select" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+<br />
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Pesquisa</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text"></div>
+  </div>
+  <button type="submit" class="btn btn-primary">PROCURAR</button>*@
+
+<table class="table table-striped table-hover">
+    <tr>                
+         <th>
+             Nome Completo/Nome da Empresa
+         </th>
+
+         <th>
+              Nome Fantasia
+         </th>
+
+         <th>
+             CPF/CNPJ
+         </th>  
+     
+         <th>
+             DataNascimento / DataAbertura
+         </th>    
+     
+          <th>
+             Active
+         </th>
+         
+         <th> 
+             
+         </th>
+         
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.NomeCompleto != null)
+                    @Html.DisplayFor(modelItem => item.NomeCompleto)
+                else
+                    @Html.DisplayFor(modelItem => item.NomeEmpresa)
+            </td>           
+            <td>                
+                @Html.DisplayFor(modelItem => item.NomeFantasia)
+            </td>
+            
+            <td>
+                @if (item.Cpf != null)
+                    @Html.DisplayFor(modelItem => item.Cpf) 
+                else
+                    @Html.DisplayFor(modelItem => item.Cnpj)
+            </td>
+            <td>
+                @if (item.Cpf != null)
+                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                else
+                    @Html.DisplayFor(modelItem => item.DataAbertura)
+            </td>                                  
+             <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+             
+            <td>
+                <a asp-action="EditarFornecedorFisico" asp-controller="Fornecedor" asp-route-FornecedorId="@item.FornecedorId" class="btn btn-warning">Editar</a>
+                <a asp-action="DetalhesFisico" asp-controller="Fornecedor" asp-route-FornecedorId="@item.FornecedorId" class="btn btn-primary">Detalhes</a>
+                <a asp-action="ConfirmarExcluirFisico" asp-controller="Fornecedor" asp-route-FornecedorId="@item.FornecedorId" class="btn btn-danger">Excluir</a>
+   
+            </td>
+        </tr> 
+    }
+</table>
+

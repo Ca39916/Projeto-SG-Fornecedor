@@ -1,0 +1,25 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.ProdutoViewModel
+@{
+    ViewData["Title"] = "Produto";
+}
+
+
+ <h2> Excluir Produto</h2>
+ <p>Deseja excluir esse produto?</p>
+
+@using (Html.BeginForm("Excluir", "Produto", FormMethod.Post))
+{
+    <div>
+        <label for="IdProduto" class="form-label">IdProduto</label>
+        <input asp-for= "@Model.IdProduto" class="form-control" readonly type = "text"> <br>
+        <br>
+        <label for="Nome" class="form-label">Nome</label>
+         <input asp-for= "@Model.Nome" class="form-control" readonly id="Nome" type="text"  name="Nome">  
+    </div>    
+    <br>
+    <br>
+    <div>
+        <button type= "submit"  class= "btn btn-primary" > Delete </button>
+    </div>
+ 
+}

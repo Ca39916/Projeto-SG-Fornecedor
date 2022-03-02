@@ -1,0 +1,161 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.FornecedorViewModel
+@{
+    ViewData["Title"] = "FornecedorJuridico";
+}
+
+<h2>Editar Fornecedor</h2>
+
+@using (Html.BeginForm("EditarJuridico", "Fornecedor", FormMethod.Post))
+{
+     <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">FornecedorId</span>
+        <input asp-for= "@Model.FornecedorId"  readonly="readonly" type = "text">
+    </div>
+        <br>
+    <br>
+    <label for="NomeEmpresa" class="form-label">NomeEmpresa</label>
+         <input asp-for= "@Model.NomeEmpresa" class="form-control" id="NomeEmpresa" type="text"  name="NomeEmpresa">
+    <br>
+         <label for="NomeFantasia" class="form-label">NomeFantasia</label>
+         <input asp-for= "@Model.NomeFantasia" class="form-control" id="NomeFantasia" type="text"  name="NomeFantasia">
+    <br>
+         <label for="Cnpj" class="form-label">Cnpj</label>
+         <input asp-for= "@Model.Cnpj" class="form-control" id="Cnpj" type="text"  name="Cnpj">
+    <br>
+         <label for="DataAbertura" class="form-label">DataAbertura</label>
+         <input asp-for= "@Model.DataAbertura" class="form-control" id="DataAbertura" type="date"  name="DataAbertura">
+    <br>
+         <label for="Rua" class="form-label">Rua</label>
+         <input asp-for= "@Model.Endereco.Rua" class="form-control" id="Endereco.Rua" type="text"  name="Endereco.Rua">
+    <br>
+         <label for="Numero" class="form-label">Número</label>
+         <input asp-for="@Model.Endereco.Numero" class="form-control" id="Endereco.Numero" type="text"  name="Endereco.Numero">
+    <br>
+         <label for="Complemento" class="form-label">Complemento</label>
+         <input asp-for="@Model.Endereco.Complemento" class="form-control" id="Endereco.Complemento" type="text"  name="Endereco.Complemento">
+    <br>
+         <label for="Cep" class="form-label">CEP</label>
+         <input asp-for="@Model.Endereco.Cep" class="form-control" id="Endereco.Cep" type="text"  name="Endereco.Cep">
+    <br>
+         <label for="Referencia" class="form-label">Referência</label>
+         <input asp-for="@Model.Endereco.Referencia" class="form-control" id="Endereco.Referencia" type="text"  name="Endereco.Referencia">
+    <br>
+         <label for="Bairro" class="form-label">Bairro</label>
+         <input asp-for="@Model.Endereco.Bairro" class="form-control" id="Endereco.Bairro" type="text"  name="Endereco.Bairro">
+    <br>
+         <label for="Cidade" class="form-label">Cidade</label>
+         <input asp-for="@Model.Endereco.Cidade" class="form-control" id="Endereco.Cidade" type="text"  name="Endereco.Cidade">
+    <br>
+         <label for="Estado" class="form-label">Estado</label>
+         <input asp-for="@Model.Endereco.Estado" class="form-control" id="Endereco.Estado" type="text"  name="Endereco.Estado">
+    
+    <!-- Lista de Telefones-->
+    @for (int linha = 0; linha < Model.Telefones.Count(); linha++)
+    {
+        <br>
+        <label for="DDD" class="form-label">DDD @{(linha + 1).ToString();}</label>    
+        @Html.TextBoxFor(x => x.Telefones[linha].DDD, new { @class = "form-control" })
+        <br>
+        <label for="Numero" class="form-label">Numero @{(linha + 1).ToString();}</label>
+        @Html.TextBoxFor(x => x.Telefones[linha].Numero, new { @class = "form-control" })
+
+        @Html.HiddenFor(x => x.Telefones[linha].TelefoneId)
+        @Html.HiddenFor(x => x.Telefones[linha].FornecedorId)
+        @Html.HiddenFor(x => x.Telefones[linha].InsertDate)
+    }
+
+    <br>
+         <label for="Email" class="form-label">Email</label>
+         <input asp-for="@Model.Email.email" class="form-control" id="Email.email" type="text"  name="Email.email">
+        @Html.HiddenFor(x => x.Email.EmailId)
+        @Html.HiddenFor(x => x.Email.FornecedorId)
+        @Html.HiddenFor(x => x.Email.InsertDate)
+    <br>       
+    <br>
+    <div class="form-check">        
+        <input asp-for= "@Model.Active" type ="checkbox" value="true">
+        <label class="form-check-label" for="flexCheckIndeterminate">
+            Active
+        </label>
+    </div>   
+    @Html.HiddenFor(x => x.Endereco.EnderecoId)
+    @Html.HiddenFor(x => x.Endereco.FornecedorId)
+    @Html.HiddenFor(x => x.Endereco.InsertDate)
+    <br>
+    <br>    
+   <input class="btn btn-primary" type="submit" value="Salvar">
+    
+   <a class="btn btn-primary" href="Index" >Cancelar</a>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            FornecedorId
+        </th>
+        <th>
+            Active
+        </th>
+        <th>
+            InsertDate
+        </th>
+        <th>
+            UpdateDate
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FornecedorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsertDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FornecedorId }, new {@class = "label label-warning" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FornecedorId }, new { @class = "label label-info" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.FornecedorId }, new { @class = "btn btn-danger deleteBtn btn-xs glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    }*@
+
+</table>

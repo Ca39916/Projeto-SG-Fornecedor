@@ -19,9 +19,9 @@ namespace ProjetoSGFornecedor.infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Fornecedor", b =>
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Categoria", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdCategoria")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -31,12 +31,316 @@ namespace ProjetoSGFornecedor.infrastructure.Migrations
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdCategoria");
+
+                    b.ToTable("Categoria");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Email", b =>
+                {
+                    b.Property<Guid>("EmailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FornecedorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmailId");
+
+                    b.HasIndex("FornecedorId")
+                        .IsUnique();
+
+                    b.ToTable("Email");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Endereco", b =>
+                {
+                    b.Property<Guid>("EnderecoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Bairro")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cep")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Complemento")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("FornecedorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Numero")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Referencia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rua")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("EnderecoId");
+
+                    b.HasIndex("FornecedorId")
+                        .IsUnique();
+
+                    b.ToTable("Endereco");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Fornecedor", b =>
+                {
+                    b.Property<Guid>("FornecedorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("FornecedorId");
 
                     b.ToTable("Fornecedor");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Fornecedor");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Imagem", b =>
+                {
+                    b.Property<Guid>("IdImagem")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CaminhoDaImagem")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("IdProduto")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IdImagem");
+
+                    b.HasIndex("IdProduto");
+
+                    b.ToTable("Imagem");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
+
+                    b.ToTable("Menu");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Produto", b =>
+                {
+                    b.Property<Guid>("IdProduto")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("CategoriaIdCategoria")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CodigoBarras")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PrecoCompra")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PrecoVenda")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("QuantidadeEstoque")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IdProduto");
+
+                    b.HasIndex("CategoriaIdCategoria");
+
+                    b.ToTable("Produto");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Telefone", b =>
+                {
+                    b.Property<Guid>("TelefoneId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DDD")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("FornecedorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Numero")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("TelefoneId");
+
+                    b.HasIndex("FornecedorId");
+
+                    b.ToTable("Telefone");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.FornecedorFisico", b =>
+                {
+                    b.HasBaseType("SGFornecedor.applicationCore.Entity.Fornecedor");
+
+                    b.Property<string>("Cpf")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NomeCompleto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeFantasia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("FornecedorFisico");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.FornecedorJuridico", b =>
+                {
+                    b.HasBaseType("SGFornecedor.applicationCore.Entity.Fornecedor");
+
+                    b.Property<string>("Cnpj")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataAbertura")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NomeEmpresa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeFantasia")
+                        .HasColumnName("FornecedorJuridico_NomeFantasia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("FornecedorJuridico");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Email", b =>
+                {
+                    b.HasOne("SGFornecedor.applicationCore.Entity.Fornecedor", "Fornecedor")
+                        .WithOne("Email")
+                        .HasForeignKey("SGFornecedor.applicationCore.Entity.Email", "FornecedorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Endereco", b =>
+                {
+                    b.HasOne("SGFornecedor.applicationCore.Entity.Fornecedor", "Fornecedor")
+                        .WithOne("Endereco")
+                        .HasForeignKey("SGFornecedor.applicationCore.Entity.Endereco", "FornecedorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Imagem", b =>
+                {
+                    b.HasOne("SGFornecedor.applicationCore.Entity.Produto", "Produto")
+                        .WithMany("Imagem")
+                        .HasForeignKey("IdProduto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Menu", b =>
+                {
+                    b.HasOne("SGFornecedor.applicationCore.Entity.Menu", null)
+                        .WithMany("SubMenu")
+                        .HasForeignKey("MenuId");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Produto", b =>
+                {
+                    b.HasOne("SGFornecedor.applicationCore.Entity.Categoria", "Categoria")
+                        .WithMany("Produto")
+                        .HasForeignKey("CategoriaIdCategoria");
+                });
+
+            modelBuilder.Entity("SGFornecedor.applicationCore.Entity.Telefone", b =>
+                {
+                    b.HasOne("SGFornecedor.applicationCore.Entity.Fornecedor", "Fornecedor")
+                        .WithMany("Telefones")
+                        .HasForeignKey("FornecedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

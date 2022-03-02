@@ -1,0 +1,56 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.ProdutoViewModel
+@{
+    ViewData["Title"] = "Produto";
+}
+
+@using (Html.BeginForm("NovoProduto", "Produto", FormMethod.Post))
+{
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">IdProduto</span>
+        <input class="form-control" type="text" placeholder="Id Produto" aria-label="IdProduto" disabled id="IdProduto" name="IdProduto">
+    </div>
+    <br>
+        <label for="Nome" class="form-label">Nome</label>
+         <input asp-for= "@Model.Nome" class="form-control" id="Nome" type="text"  name="Nome">
+        <br>
+        <br>
+        <label for="CodigoBarras" class="form-label">CodigoBarras</label>
+        <input asp-for= "@Model.CodigoBarras" id="CodigoBarras"  class="form-control" type="text" name="CodigoBarras">
+        <br>
+        <br>
+         <label for="QuantidadeEstoque" class="form-label">QuantidadeEstoque</label>
+        <input asp-for= "@Model.QuantidadeEstoque" id="QuantidadeEstoque"  class="form-control" type="text" name="QuantidadeEstoque">
+        <br>
+        <br>
+         <label for="PrecoVenda" class="form-label">PrecoVenda</label>
+        <input asp-for= "@Model.PrecoVenda" id="PrecoVenda"  class="form-control" type="text" name="PrecoVenda">
+        <br>
+        <br>
+        <label for="PrecoCompra" class="form-label">PrecoCompra</label>
+        <input asp-for= "@Model.PrecoCompra" id="PrecoCompra" class="form-control"  type="text" name="PrecoCompra"> 
+        <br>
+        @Html.DropDownListFor(x => x.Categoria.IdCategoria, new SelectList(ViewBag.ListaCategorias, "IdCategoria", "Nome"))
+
+        <br>
+       @*  <label for="InsertDate" class="form-label">InsertDate</label>
+         <input asp-for= "@Model.InsertDate"  class="form-control"  type = "date">
+        <br>
+         <label for="UpdateDate" class="form-label">UpdateDate</label>
+        <input asp-for= "@Model.UpdateDate"  class="form-control"  type = "date">   *@
+    <br>  
+    <br>
+    <div class="form-check"> 
+        <input class="form-check-input" type="checkbox" value="true" id="Active" name="Active">
+        <label class="form-check-label" for="flexCheckIndeterminate">
+            Active
+        </label>
+    </div>
+    <br>    
+   <input class="btn btn-primary" type="submit" value="Salvar">
+    
+   <a class="btn btn-primary" href="Index" >Cancelar</a>
+}
+
+
+
+

@@ -1,0 +1,124 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.ProdutoViewModel
+@{
+    ViewData["Title"] = "Produto";
+}
+
+<h2>Editar Produto</h2>
+
+@using (Html.BeginForm("Editar", "Produto", FormMethod.Post))
+{
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">IdProduto</span>
+        <input asp-for="@Model.IdProduto" readonly="readonly" type = "text">
+    </div>
+    <br>
+    <br>
+        <label for="Nome" class="form-label">Nome</label>
+         <input asp-for="@Model.Nome" class="form-control" id="Nome" type="text"  name="Nome">
+        <br>
+        <br>
+        <label for="CodigoBarras" class="form-label">CodigoBarras</label>
+        <input asp-for="@Model.CodigoBarras" id="CodigoBarras"  class="form-control" type="text" name="CodigoBarras">
+        <br>
+        <br>
+         <label for="QuantidadeEstoque" class="form-label">QuantidadeEstoque</label>
+        <input asp-for="@Model.QuantidadeEstoque" id="QuantidadeEstoque"  class="form-control" type="text" name="QuantidadeEstoque">
+        <br>
+        <br>
+         <label for="PrecoVenda" class="form-label">PrecoVenda</label>
+        <input asp-for="@Model.PrecoVenda" id="PrecoVenda"  class="form-control" type="text" name="PrecoVenda">
+        <br>
+        <br>
+        <label for="PrecoCompra" class="form-label">PrecoCompra</label>
+        <input asp-for="@Model.PrecoCompra" id="PrecoCompra" class="form-control"  type="text" name="PrecoCompra"> 
+        <br>
+        <br>
+       @*  <label for="InsertDate" class="form-label">InsertDate</label>
+         <input asp-for= "@Model.InsertDate"  class="form-control" readonly="readonly" type ="date">
+        <br>
+         <label for="UpdateDate" class="form-label">UpdateDate</label>
+        <input asp-for= "@Model.UpdateDate" class="form-control" readonly="readonly" type ="date">   *@
+    <br>
+    <div class="form-check">        
+        <input asp-for= "@Model.Active" type ="checkbox" value="true">
+        <label class="form-check-label" for="flexCheckIndeterminate">
+            Active
+        </label>
+    </div>    
+    <br>
+   <input class="btn btn-primary" type="submit" value="Salvar">
+    
+   <a class="btn btn-primary" href="Index" >Cancelar</a>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            FornecedorId
+        </th>
+        <th>
+            Active
+        </th>
+        <th>
+            InsertDate
+        </th>
+        <th>
+            UpdateDate
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FornecedorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsertDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FornecedorId }, new {@class = "label label-warning" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FornecedorId }, new { @class = "label label-info" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.FornecedorId }, new { @class = "btn btn-danger deleteBtn btn-xs glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    }*@
+
+</table>

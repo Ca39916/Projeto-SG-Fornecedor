@@ -1,0 +1,33 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.CategoriaViewModel
+@{
+    ViewData["Title"] = "Categoria";
+}
+
+ <h2> Detalhes da Categoria</h2>
+ <br>
+ <br>
+  <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">Id Categoria</span>
+        <input asp-for= "@Model.IdCategoria" disabled type = "text">
+  </div>
+    <br>
+  <div class="mb-3">
+        <label for="Nome" class="form-label">Nome</label>
+         <input asp-for= "@Model.Nome" class="form-control" id="Nome" type="text" disabled name="Nome">
+
+         <label>InsertDate</label>
+         <input asp-for= "@Model.InsertDate" class="form-control"  disabled  type = "date">
+        <br>
+
+        <label>UpdateDate</label>
+        <input asp-for= "@Model.UpdateDate" class="form-control"  disabled  type = "date"> 
+  </div>
+     <div class="form-check">        
+        <input asp-for= "@Model.Active" type ="checkbox" disabled value="true">
+        <label class="form-check-label" for="flexCheckIndeterminate">Active</label>
+    </div>    
+    <br>
+    <a href= "Index">Voltar</a>
+
+
+

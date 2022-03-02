@@ -1,0 +1,52 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.ProdutoViewModel
+@{
+    ViewData["Title"] = "Produto";
+}
+
+
+ <h2> Detalhes do Produto</h2>
+ <br>
+@using (Html.BeginForm("Detalhes", "Produto", FormMethod.Post))
+{
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">Id Produto</span>
+        <input asp-for= "@Model.IdProduto" disabled type = "text">
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="mb-3">
+        <label for="Nome" class="form-label">Nome</label>
+         <input asp-for= "@Model.Nome" class="form-control" id="Nome" type="text" disabled name="Nome">
+        <br>        
+        <label for="CodigoBarras" class="form-label">CodigoBarras</label>
+         <input asp-for= "@Model.CodigoBarras" class="form-control" id="CodigoBarras" type="text" disabled name="CodigoBarras">
+        <br>
+         <label for="QuantidadeEstoque" class="form-label">QuantidadeEstoque</label>
+        <input asp-for= "@Model.QuantidadeEstoque" class="form-control" id="QuantidadeEstoque" type="text" disabled name="QuantidadeEstoque">
+        <br>
+        <label for="PrecoVenda" class="form-label">PrecoVenda</label>
+        <input asp-for= "@Model.PrecoVenda" id="PrecoVenda" class="form-control" type="text" disabled name="PrecoVenda">
+        <br>
+        <label for="Precocompra" class="form-label">Preço de compra</label>        
+        <input asp-for= "@Model.PrecoCompra" id="PrecoCompra"  class="form-control" type="text" disabled name="PrecoCompra"> 
+        <br>
+        <label for="InsertDate" class="form-label">InsertDate</label>
+         <input asp-for= "@Model.InsertDate" class="form-control" style = "width:300px;" disabled readonly="readonly" type = "date">
+        <br>
+        <label for="UpdateDate" class="form-label">UpdateDate</label>
+        <input asp-for= "@Model.UpdateDate" class="form-control" style = "width:300px;" disabled readonly="readonly" type = "date"> 
+    </div>
+    <br>
+    <div class="form-check">        
+        <input asp-for= "@Model.Active" type ="checkbox" disabled value="true">
+        <label class="form-check-label" for="flexCheckIndeterminate">
+            Active
+        </label>
+    </div>    
+    <br>
+    <a href= "Index">Voltar</a>
+    
+}
+
+

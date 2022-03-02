@@ -1,0 +1,45 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.FornecedorViewModel
+@{
+    ViewData["Title"] = "FornecedorFisico";
+}
+
+
+ <h2> Excluir fornecedor</h2>
+ <p>Deseja excluir esse fornecedor ?</p>
+
+@using (Html.BeginForm("ExcluirFisico", "Fornecedor", FormMethod.Post))
+{
+@*    <div>
+        <label for="ForcenecedorId" class="form-label">ForcenecedorId</label>
+        <input asp-for= "@Model.FornecedorId" class="form-control" disabled id="FornecedorId" type = "text" name="FornecedorId"> <br>
+        <br>       
+    </div> *@
+
+
+
+    <div>
+        <label for="ForcenecedorId" class="form-label">ForcenecedorId</label>
+        <input asp-for= "@Model.FornecedorId" class="form-control" readonly id="FornecedorId" type = "text" name="FornecedorId"> <br>
+        <br>       
+    </div>   
+
+    <br>
+    <label for="NomeFantasia" class="form-label">NomeFantasia</label>
+         <input asp-for= "@Model.NomeFantasia" class="form-control" disabled id="NomeFantasia" type="text"  name="NomeFantasia">
+    <br>
+         <label for="NomeCompleto" class="form-label">NomeCompleto</label>
+         <input asp-for= "@Model.NomeCompleto" class="form-control" id="NomeCompleto"  disabled type="text"  name="NomeCompleto">
+    <br>
+         <label for="Cpf" class="form-label">Cpf</label>
+         <input asp-for= "@Model.Cpf" class="form-control" id="Cpf" disabled type="text"  name="Cpf">
+    <br>
+         <label for="DataNascimento" class="form-label">DataNascimento</label>
+         <input asp-for= "@Model.DataNascimento" class="form-control" disabled id="DataNascimento" type="text"  name="DataNascimento">
+    <br>
+    <br>
+    <br>
+    <div>
+        <button type= "submit"  class= "btn btn-primary" >Delete</button>
+    </div>
+ 
+}

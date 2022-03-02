@@ -1,0 +1,84 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.FornecedorViewModel
+@{
+    ViewData["Title"] = "FornecedorFisico";
+}
+ <h2> Detalhes do fornecedor</h2>
+ <br>
+@using (Html.BeginForm("DetalhesFisico", "Fornecedor", FormMethod.Post))
+{
+
+    <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">Fornecedor Id</span>
+        <input asp-for= "@Model.FornecedorId" disabled type = "text"> <br>
+        <br>
+    </div>
+    <br>
+        <label for="NomeFantasia" class="form-label">NomeFantasia</label>
+        <input asp-for= "@Model.NomeFantasia" class="form-control" readonly id="NomeFantasia" type="text"  name="NomeFantasia">
+    <br>
+         <label for="NomeCompleto" class="form-label">NomeCompleto</label>
+         <input asp-for= "@Model.NomeCompleto" class="form-control" disabled id="NomeCompleto" type="text"  name="NomeCompleto">
+    <br>
+         <label for="Cpf" class="form-label">Cpf</label>
+         <input asp-for= "@Model.Cpf" class="form-control" id="Cpf" readonly type="text"  name="Cpf">
+    <br>
+         <label for="DataNascimento" class="form-label">DataNascimento</label>
+         <input asp-for= "@Model.DataNascimento" class="form-control" disabled id="Nome" type="text"  name="DataNascimento">
+    <br>
+         <label for="Rua" class="form-label">Rua</label>
+         <input asp-for= "@Model.Endereco.Rua" class="form-control" id="Endereco.Rua" disabled type="text"  name="Endereco.Rua">
+    <br>
+         <label for="Numero" class="form-label">Número</label>
+         <input asp-for="@Model.Endereco.Numero" class="form-control" id="Endereco.Numero" disabled type="text"  name="Endereco.Numero">
+    <br>
+         <label for="Complemento" class="form-label">Complemento</label>
+         <input asp-for="@Model.Endereco.Complemento" class="form-control" id="Endereco.Complemento" disabled type="text"  name="Endereco.Complemento">
+    <br>
+         <label for="Cep" class="form-label">CEP</label>
+         <input asp-for="@Model.Endereco.Cep" class="form-control" id="Endereco.Cep" disabled type="text"  name="Endereco.Cep">   
+    <br>
+         <label for="Referencia" class="form-label">Referência</label>
+         <input asp-for="@Model.Endereco.Referencia" class="form-control" id="Endereco.Referencia" disabled type="text"  name="Endereco.Referencia">
+    <br>
+         <label for="Bairro" class="form-label">Bairro</label>
+         <input asp-for="@Model.Endereco.Bairro" class="form-control" id="Endereco.Bairro" disabled type="text"  name="Endereco.Bairro">
+    <br>
+         <label for="Cidade" class="form-label">Cidade</label>
+         <input asp-for="@Model.Endereco.Cidade" class="form-control" id="Endereco.Cidade" disabled type="text"  name="Endereco.Cidade">
+    <br>
+         <label for="Estado" class="form-label">Estado</label>
+         <input asp-for="@Model.Endereco.Estado" class="form-control" id="Endereco.Estado" disabled type="text"  name="Endereco.Estado">
+    
+    <!-- Lista de Telefones-->
+    @for (int linha = 0; linha < Model.Telefones.Count(); linha++)
+    {
+        <br>
+        <label for="DDD" class="form-label">DDD @{(linha + 1).ToString();}</label>    
+        @Html.TextBoxFor(x => x.Telefones[linha].DDD, new { @class = "form-control", @disabled="disabled"})
+        <br>
+        <label for="Numero" class="form-label">Numero @{(linha + 1).ToString();}</label>
+        @Html.TextBoxFor(x => x.Telefones[linha].Numero, new { @class = "form-control", @disabled="disabled" })
+    }
+
+    <br>
+         <label for="Email" class="form-label">Email</label>
+         <input asp-for="@Model.Email.email" class="form-control" id="Email.email" disabled type="text"  name="Email.email">
+    <br>
+    <label for="InsertDate" class="form-label">InsertDate</label>
+         <input asp-for= "@Model.InsertDate" class="form-control"  disabled type = "date">
+        <br>
+        <label for="UpdateDate" class="form-label">UpdateDate</label>
+        <input asp-for= "@Model.UpdateDate" class="form-control"  disabled type = "date">     
+    <br>
+    <div class="form-check">        
+        <input asp-for= "@Model.Active" type ="checkbox" disabled value="true">
+        <label class="form-check-label" for="flexCheckIndeterminate">
+            Active
+        </label>
+    </div>    
+    <br>
+    <a href= "Index">Voltar</a>
+    
+}
+
+

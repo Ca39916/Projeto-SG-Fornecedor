@@ -8,7 +8,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjetoSGFornecedor.infrastructure.Data;
+using ProjetoSGFornecedor.infrastructure.Repository;
 using ProjetoSGFornecedor.UI.WEB.Data;
+using SGFornecedor.applicationCore.Interfaces.Repository;
+using SGFornecedor.applicationCore.Interfaces.Services;
+using SGFornecedor.applicationCore.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,29 +22,45 @@ namespace ProjetoSGFornecedor.UI.WEB
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration) //Contrutor 
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; } //Atributo IConfiguration
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Configuração do AutoMapper
+            services.AddAutoMapper(typeof(Startup));
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<FornecedorContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<FornecedorContext>();
+            services.AddScoped<IFornecedorService,FornecedorServices>(); //Injeção de dependencia
+            services.AddScoped<IFornecedorRepository, FornecedorRepository>();//
+
+            services.AddScoped<IProdutoService, ProdutoServices>(); //Injeção de dependencia
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();//
+
+            services.AddScoped<ICategoriaService, CategoriaServices>(); //Injeção de dependencia
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();//
+
+
 
             //String de conexão com o BD
-            services.AddDbContext<FornecedorContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

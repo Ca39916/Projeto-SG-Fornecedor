@@ -1,0 +1,35 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.CategoriaViewModel
+@{
+    ViewData["Title"] = "Categoria";
+}
+
+<h2>Editar Categoria</h2>
+
+@using (Html.BeginForm("Editar", "Categoria", FormMethod.Post))
+{
+  <div class="input-group flex-nowrap">
+    <span class="input-group-text" id="addon-wrapping">IdCategoria</span>
+    <input asp-for="@Model.IdCategoria" readonly="readonly" type="text">
+  </div>
+    <br>
+    <br>
+        <label for="Nome" class="form-label">Nome</label>
+        <input asp-for="@Model.Nome" class="form-control" id="Nome" type="text"  name="Nome">
+    <br>
+    <br>
+       @* <label for="InsertDate" class="form-label">InsertDate</label>
+        <input asp-for= "@Model.InsertDate"  class="form-control" readonly="readonly" type ="date">
+        <br>
+        <label for="UpdateDate" class="form-label">UpdateDate</label>
+        <input asp-for= "@Model.UpdateDate" class="form-control" readonly="readonly" type ="date">
+       *@
+    <br>
+  <div class="form-check">        
+    <input asp-for="@Model.Active" type="checkbox" value="true">
+    <label class="form-check-label" for="flexCheckIndeterminate">Active</label>
+  </div>    
+    <br>
+    <input class="btn btn-primary" type="submit" value="Salvar">
+    
+    <a class="btn btn-primary" href="Index" >Cancelar</a>
+}

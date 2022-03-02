@@ -1,0 +1,34 @@
+﻿@model ProjetoSGFornecedor.UI.WEB.ViewModels.FornecedorViewModel
+@{
+    ViewData["Title"] = "FornecedorJuridico";
+}
+
+
+ <h2> Excluir fornecedor Juridico</h2>
+ <p>Deseja excluir esse fornecedor ?</p>
+
+@using (Html.BeginForm("ExcluirJuridico", "Fornecedor", FormMethod.Post))
+{
+    <div>
+        <label for="ForcenecedorId" class="form-label">ForcenecedorId</label>
+        <input asp-for= "@Model.FornecedorId" class="form-control" readonly id="FornecedorId" type = "text" name="FornecedorId"> <br>
+        <br>       
+    </div>    
+    <br>
+    <label for="NomeEmpresa" class="form-label">NomeEmpresa</label>
+         <input asp-for= "@Model.NomeEmpresa" class="form-control" id="NomeEmpresa" type="text"  name="NomeEmpresa">
+    <br>
+         <label for="NomeFantasia" class="form-label">NomeFantasia</label>
+         <input asp-for= "@Model.NomeFantasia" class="form-control" id="NomeFantasia" type="text"  name="NomeFantasia">
+    <br>
+         <label for="Cnpj" class="form-label">Cnpj</label>
+         <input asp-for= "@Model.Cnpj" class="form-control" id="Cnpj" type="text"  name="Cnpj">
+    <br>
+         <label for="DataAbertura" class="form-label">DataAbertura</label>
+         <input asp-for= "@Model.DataAbertura" class="form-control" id="DataAbertura" type="text"  name="DataAbertura">
+    <br>
+    <div>
+        <button type= "submit"  class= "btn btn-primary" > Delete </button>
+    </div>
+ 
+}
