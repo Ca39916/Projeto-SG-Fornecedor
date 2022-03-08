@@ -29,14 +29,14 @@ namespace SGFornecedor.applicationCore.Entity
                 valida.Add("NomeFantasia", "NOME FANTASIA OBRIGATÓRIO");
 
             }
-			else // Se o Nome Fantasia NÃO estiver em branco, verificar se existe outro cadastro com o mesmo Nome Fantasia no banco de dados
-			{
-				var Fornecedor = _Fornecedor.BuscarJuridico(x => x.NomeFantasia == ValiFornecedor.NomeFantasia);
-				if (Fornecedor != null)
-				{
-					valida.Add("BuscarJuridico", "NOME FANTASIA JÁ CADASTRADO");
-				}
-			}
+			//else // Se o Nome Fantasia NÃO estiver em branco, verificar se existe outro cadastro com o mesmo Nome Fantasia no banco de dados
+			//{
+			//	var Fornecedor = _Fornecedor.BuscarJuridico(x => x.NomeFantasia == ValiFornecedor.NomeFantasia);
+			//	if (Fornecedor != null)
+			//	{
+			//		valida.Add("BuscarJuridico", "NOME FANTASIA JÁ CADASTRADO");
+			//	}
+			//}
 
             if (string.IsNullOrEmpty(ValiFornecedor.NomeEmpresa)) //IsNullOrEmpty verifica se o campo é nulo ou esta em branco
             {
@@ -52,11 +52,11 @@ namespace SGFornecedor.applicationCore.Entity
             else // Se o CNPJ NÃO estiver em branco, verificar se existe outro cadastro com o mesmo CNPJ no banco de dados
             {
 				// Verifica se existe outro cadastro com o mesmo CNPJ
-				var Fornecedor = _Fornecedor.BuscarJuridico(x => x.Cnpj == ValiFornecedor.Cnpj);
-				if (Fornecedor != null)
-				{
-					valida.Add("Cnpj", "CPF JÁ CADASTRADO");
-				}
+				//var Fornecedor = _Fornecedor.BuscarJuridico(x => x.Cnpj == ValiFornecedor.Cnpj);
+				//if (Fornecedor != null)
+				//{
+				//	valida.Add("Cnpj", "CPF JÁ CADASTRADO");
+				//}
 
 				// Verifica se o CPNJ é válido
 				if (!ValidaCnpj(ValiFornecedor.Cnpj))

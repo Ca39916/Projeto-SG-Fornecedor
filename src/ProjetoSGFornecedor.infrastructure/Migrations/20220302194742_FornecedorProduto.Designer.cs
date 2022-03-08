@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoSGFornecedor.infrastructure.Data;
 
 namespace ProjetoSGFornecedor.infrastructure.Migrations
 {
     [DbContext(typeof(FornecedorContext))]
-    partial class FornecedorContextModelSnapshot : ModelSnapshot
+    [Migration("20220302194742_FornecedorProduto")]
+    partial class FornecedorProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

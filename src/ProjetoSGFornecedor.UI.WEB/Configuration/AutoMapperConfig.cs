@@ -13,9 +13,6 @@ namespace ProjetoSGFornecedor.UI.WEB.Configuration
             CreateMap<FornecedorViewModel, FornecedorJuridico>().ReverseMap();
             CreateMap<ProdutoViewModel, Produto>().ReverseMap();
             CreateMap<CategoriaViewModel, Categoria>().ReverseMap();
-            //CreateMap<FornecedorViewModel, Telefone>().ReverseMap();
-            //CreateMap<FornecedorViewModel, Email>().ReverseMap();
-            //CreateMap<FornecedorViewModel, Endereco>().ReverseMap();
         }
     }
 }

@@ -46,5 +46,10 @@ namespace SGFornecedor.applicationCore.Services
         {
             _produtoService.Remover(entity);
         }
+
+        public List<Imagem> BuscarImagens(Expression<Func<Imagem, bool>> predicado)
+        {
+            return _produtoService.BuscarImagens(predicado);
+        }
     }
 }

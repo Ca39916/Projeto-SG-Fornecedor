@@ -23,11 +23,7 @@ namespace SGFornecedor.applicationCore.Entity
 
         public  ICollection<Telefone> Telefones { get; set; } // Coleção de Telefone
 
-        //public Telefone Telefone1 { get; set; } = new Telefone();
-
-        //public Telefone Telefone2 { get; set; } = new Telefone();
-
-        //public Telefone Telefone3 { get; set; } = new Telefone();
+        //public ICollection<Produto> Produtos { get; set; } // Coleção de Produtos
 
 
 

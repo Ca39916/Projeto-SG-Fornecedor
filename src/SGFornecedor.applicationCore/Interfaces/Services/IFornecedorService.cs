@@ -46,5 +46,6 @@ namespace SGFornecedor.applicationCore.Interfaces.Services
         void RemoverEndereco(Endereco entity);
         void RemoverEmail(Email entity);
         void RemoverTelefones(List<Telefone> lista);
+        List<RelatorioFornecedorProduto> RelatorioFornecedorProduto();
     }
 }

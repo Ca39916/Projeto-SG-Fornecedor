@@ -22,9 +22,11 @@ namespace SGFornecedor.applicationCore.Entity
         public DateTime InsertDate { get; set; }
         public DateTime UpdateDate { get; set; }
 
-        public Categoria Categoria { get; set; } // Produto pode ter apenas 1 Categoria 
+        public Guid FornecedorId { get; set; }
 
-        public ICollection<Imagem> Imagens { get; set; } // Coleção de imagem
+        public Guid IdCategoria { get; set; }
+
+        public List<Imagem> Imagens { get; set; } // Coleção de imagem
 
         public List<string> ValidaProduto(Produto ValiProduto)
         {
@@ -60,16 +62,13 @@ namespace SGFornecedor.applicationCore.Entity
 
             }
 
-            if (string.IsNullOrEmpty(ValiProduto.Categoria.IdCategoria.ToString())) //IsNullOrEmpty verifica se o campo é nulo ou esta em branco
+            if (string.IsNullOrEmpty(ValiProduto.IdCategoria.ToString())) //IsNullOrEmpty verifica se o campo é nulo ou esta em branco
             {
                 valida.Add("CATEGORIA OBRIGATÓRIO");
 
             }
             return valida;
         }
-
-
-
     }
 } 
 

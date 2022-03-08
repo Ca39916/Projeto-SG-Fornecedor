@@ -38,6 +38,17 @@
         <input asp-for= "@Model.UpdateDate" class="form-control" style = "width:300px;" disabled readonly="readonly" type = "date"> 
     </div>
     <br>
+    @Html.DropDownListFor(x => x.IdCategoria, new SelectList(ViewBag.ListaCategorias, "IdCategoria", "Nome"), new { @disabled = "disabled" })
+     <br>
+
+    @Html.DropDownListFor(x => x.FornecedorId, new SelectList(ViewBag.ListaFornecedores, "FornecedorId", "NomeFantasia"), new { @disabled = "disabled" })
+     <br>
+    @foreach (var imagem in Model.Imagens)
+    {
+        <img src="@imagem.CaminhoDaImagem">
+         <br>
+    }
+
     <div class="form-check">        
         <input asp-for= "@Model.Active" type ="checkbox" disabled value="true">
         <label class="form-check-label" for="flexCheckIndeterminate">

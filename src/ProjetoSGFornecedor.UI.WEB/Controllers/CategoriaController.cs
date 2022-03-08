@@ -5,6 +5,7 @@ using SGFornecedor.applicationCore.Entity;
 using SGFornecedor.applicationCore.Interfaces.Services;
 using System.Collections.Generic;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProjetoSGFornecedor.UI.WEB.Controllers
 {
@@ -28,6 +29,7 @@ namespace ProjetoSGFornecedor.UI.WEB.Controllers
             return View(model);//Vai abrir a tela index com a lista de fornecedores
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult NovaCategoria(CategoriaViewModel viewModel)//Metodo de cadastro do novo fornecedor
         {
@@ -50,12 +52,14 @@ namespace ProjetoSGFornecedor.UI.WEB.Controllers
             return RedirectToAction("Index");//Se o cadastro for valido ele abre a tela Index
         }
 
+        [Authorize]
         public IActionResult NovaCategoria()
         {
             return View();
 
         }
 
+        [Authorize]
         public IActionResult ConfirmarExcluir(CategoriaViewModel viewModel)//Metodo de ConfirmarExcluir
         {
 
@@ -66,6 +70,7 @@ namespace ProjetoSGFornecedor.UI.WEB.Controllers
             return View(model);//Se o cadastro for valido ele abre a tela ConfirmarExcluir
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Excluir(CategoriaViewModel viewModel)//Metodo de ConfirmarExcluir
         {
@@ -77,6 +82,7 @@ namespace ProjetoSGFornecedor.UI.WEB.Controllers
         }
 
 
+        [Authorize]
         public IActionResult EditarCategoria(CategoriaViewModel viewModel)//Metodo de Editar
         {
             var Categoria = _categoria.ObterPorId(viewModel.IdCategoria);//chama o serviço que grava no BD
@@ -86,6 +92,7 @@ namespace ProjetoSGFornecedor.UI.WEB.Controllers
             return View(model);//Se o cadastro for valido ele abre a tela Index
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Editar(CategoriaViewModel viewModel)//Metodo de Editar
         {
@@ -101,6 +108,7 @@ namespace ProjetoSGFornecedor.UI.WEB.Controllers
 
             return RedirectToAction("Index");//Volta pra tela Index
         }
+
 
         public IActionResult Detalhes(CategoriaViewModel viewModel)//Metodo de Editar
         {

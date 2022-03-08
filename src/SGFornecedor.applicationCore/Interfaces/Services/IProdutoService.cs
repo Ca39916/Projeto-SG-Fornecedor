@@ -14,5 +14,7 @@ namespace SGFornecedor.applicationCore.Interfaces.Services
         Produto ObterPorId(Guid id);
         IEnumerable<Produto> Buscar(Expression<Func<Produto, bool>> predicado);
         void Remover(Produto entity);
+
+        List<Imagem> BuscarImagens(Expression<Func<Imagem, bool>> predicado);
     }
 }

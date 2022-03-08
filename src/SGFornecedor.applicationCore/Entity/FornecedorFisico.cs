@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using SGFornecedor.applicationCore.Interfaces.Repository;
 
 
 namespace SGFornecedor.applicationCore.Entity
@@ -10,18 +10,19 @@ namespace SGFornecedor.applicationCore.Entity
     public class FornecedorFisico : Fornecedor
     {
 		private readonly IFornecedorService _Fornecedor;//Criando a variavel _Fornecedor
-		public FornecedorFisico()
-        {
-        }
 
-        public string NomeCompleto { get;  set; }
+		public FornecedorFisico()
+		{
+			
+		}
+
+		public string NomeCompleto { get;  set; }
         public string NomeFantasia { get;  set; }
         public string Cpf { get;  set; }
         public DateTime DataNascimento { get;  set; }
 
         public Dictionary<string, string> ValidaFornecedor(FornecedorFisico ValiFornecedor)
         {
-			
 			Dictionary<string,string> valida = new Dictionary<string,string>();
 			
 			//Valida Data Nascimento
@@ -37,14 +38,14 @@ namespace SGFornecedor.applicationCore.Entity
 				valida.Add("NomeFantasia", "NOME FANTASIA OBRIGATÓRIO");
 
 			}
-			else // Se o Nome Fantasia NÃO estiver em branco, verificar se existe outro cadastro com o mesmo Nome Fantasia no banco de dados
-			{
-				var Fornecedor2 = _Fornecedor.BuscarFisico(x => x.NomeFantasia == ValiFornecedor.NomeFantasia);
-				if (Fornecedor2 != null)
-				{
-					valida.Add("NomeFantasia", "NOME FANTASIA JÁ CADASTRADO");
-				}
-			}
+            else // Se o Nome Fantasia NÃO estiver em branco, verificar se existe outro cadastro com o mesmo Nome Fantasia no banco de dados
+            {
+                //var Fornecedor2 = _Fornecedor.BuscarFisico(x => x.NomeFantasia == ValiFornecedor.NomeFantasia);
+                //if (Fornecedor2 != null)
+                //{
+                //    valida.Add("NomeFantasia", "NOME FANTASIA JÁ CADASTRADO");
+                //}
+            }
 
 			//Valida Nome Completo
 			if (string.IsNullOrEmpty(ValiFornecedor.NomeCompleto)) //IsNullOrEmpty verifica se o campo é nulo ou esta em branco
@@ -58,25 +59,25 @@ namespace SGFornecedor.applicationCore.Entity
 				valida.Add("Cpf", "CPF OBRIGATÓRIO");
 
 			}
-			else // Se o CPF NÃO estiver em branco, verificar se existe outro cadastro com o mesmo CPF no banco de dados
-			{
-				//Valida se já existe outro cadastro com o mesmo CPF
-				var Fornecedor = _Fornecedor.BuscarFisico(x => x.Cpf == ValiFornecedor.Cpf);
-				if (Fornecedor != null)
-				{
-					valida.Add("Cpf", "CPF JÁ CADASTRADO");
-				}
+            else // Se o CPF NÃO estiver em branco, verificar se existe outro cadastro com o mesmo CPF no banco de dados
+            {
+                ////Valida se já existe outro cadastro com o mesmo CPF
+                //var Fornecedor = _Fornecedor.BuscarFisico(x => x.Cpf == ValiFornecedor.Cpf);
+                //if (Fornecedor != null)
+                //{
+                //    valida.Add("Cpf", "CPF JÁ CADASTRADO");
+                //}
 
 
-				//Valida CPF
-				if (!ValidaCpf(ValiFornecedor.Cpf)) //Se Cpf for invalido entra no if
-				{
-					valida.Add("Cpf", "CPF INVÁLIDO");
+                //Valida CPF
+                if (!ValidaCpf(ValiFornecedor.Cpf)) //Se Cpf for invalido entra no if
+                {
+                    valida.Add("Cpf", "CPF INVÁLIDO");
 
-				}
-			}
+                }
+            }
 
-			return valida; 
+            return valida; 
 			          
         }
 		public static bool ValidaCpf(string cpf)

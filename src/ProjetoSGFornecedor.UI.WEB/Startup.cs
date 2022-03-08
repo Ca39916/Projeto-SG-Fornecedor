@@ -58,8 +58,6 @@ namespace ProjetoSGFornecedor.UI.WEB
             services.AddScoped<ICategoriaService, CategoriaServices>(); //Injeção de dependencia
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();//
 
-
-
             //String de conexão com o BD
         }
 

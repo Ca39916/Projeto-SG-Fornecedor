@@ -6,15 +6,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace ProjetoSGFornecedor.infrastructure.Repository
 {
     public class FornecedorRepository : RepositoryBase<Fornecedor>, IFornecedorRepository
     {
+        private readonly FornecedorContext contexto;
+
         public FornecedorRepository(FornecedorContext dbContext) : base(dbContext)
         {
- 
+            contexto = dbContext;
         }
 
         public FornecedorFisico AdicionarFisico(FornecedorFisico entity)
@@ -54,9 +55,7 @@ namespace ProjetoSGFornecedor.infrastructure.Repository
             _dbContext.SaveChanges(); //SaveChanges Metodo para salvar dados
         }
 
-
-
-
+        //FORNECEDOR JURIDICO
         public FornecedorJuridico AdicionarJuridico(FornecedorJuridico entity)
         {
             _dbContext.Set<FornecedorJuridico>().Add(entity);
@@ -93,7 +92,7 @@ namespace ProjetoSGFornecedor.infrastructure.Repository
 
         public List<Telefone> BuscarTelefones(Expression<Func<Telefone, bool>> predicado)
         {
-            return _dbContext.Set<Telefone>().Where(predicado).ToList();
+            return _dbContext.Set<Telefone>().Where(predicado).AsNoTracking().ToList();
         }
 
         public Endereco BuscarEndereco(Expression<Func<Endereco, bool>> predicado)
@@ -149,5 +148,35 @@ namespace ProjetoSGFornecedor.infrastructure.Repository
 
             _dbContext.SaveChanges(); //SaveChanges Metodo para salvar dados
         }
+
+        public object ObterTodos()
+        {
+            var fornecedor = _dbContext.Set<Fornecedor>().Find();
+            return fornecedor;
+        }
+
+        public List<RelatorioFornecedorProduto> RelatorioFornecedorProduto()//Cria uma lista de fornecedores e seus produtos pra gerar o relatorio 
+        {
+            var produtoRep = new RepositoryBase<Produto>(contexto); //Variavel que representa o repository 
+            var fornecedorRep = new RepositoryBase<Fornecedor>(contexto);
+            var FisicoRep = new RepositoryBase<FornecedorFisico>(contexto);
+            var JuridicoRep = new RepositoryBase<FornecedorJuridico>(contexto);
+
+            var FornecedorProduto = produtoRep.obterTodos().Join(fornecedorRep.obterTodos(),//
+                        produto => produto.FornecedorId,
+                        fornecedor => fornecedor.FornecedorId,
+                        (prod, forn) => new RelatorioFornecedorProduto {
+                            FornecedorId = forn.FornecedorId,
+                            Nome = prod.Nome,
+                            PrecoVenda = prod.PrecoVenda,
+                            PrecoCompra = prod.PrecoCompra,
+                            CodigoBarras = prod.CodigoBarras
+                        }).ToList();
+
+            return FornecedorProduto;
+        }
+
+        
+        
     }
 }

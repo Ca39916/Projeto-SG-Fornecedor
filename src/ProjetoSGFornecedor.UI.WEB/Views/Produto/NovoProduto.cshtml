@@ -29,7 +29,13 @@
         <label for="PrecoCompra" class="form-label">PrecoCompra</label>
         <input asp-for= "@Model.PrecoCompra" id="PrecoCompra" class="form-control"  type="text" name="PrecoCompra"> 
         <br>
-        @Html.DropDownListFor(x => x.Categoria.IdCategoria, new SelectList(ViewBag.ListaCategorias, "IdCategoria", "Nome"))
+        @Html.DropDownListFor(x => x.IdCategoria, new SelectList(ViewBag.ListaCategorias, "IdCategoria", "Nome"))
+        <br>
+        <br>
+        @Html.DropDownListFor(x => x.FornecedorId, new SelectList(ViewBag.ListaFornecedores, "FornecedorId", "NomeFantasia"))
+          <br>
+         <label for="Imagem" class="form-label">Imagem</label>
+        <input asp-for= "@Model.Imagem" id="Imagem"  class="form-control" type="text" name="Imagem">
 
         <br>
        @*  <label for="InsertDate" class="form-label">InsertDate</label>

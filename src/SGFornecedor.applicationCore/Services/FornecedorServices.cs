@@ -160,6 +160,11 @@ namespace SGFornecedor.applicationCore.Services
         {
             _fornecedorService.RemoverTelefones(lista);
         }
+
+        public List<RelatorioFornecedorProduto> RelatorioFornecedorProduto()
+        {
+            return _fornecedorService.RelatorioFornecedorProduto();
+        }
     }
 }
 

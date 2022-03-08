@@ -15,8 +15,13 @@ namespace ProjetoSGFornecedor.UI.WEB.ViewModels
         public decimal PrecoCompra { get; set; }
         public DateTime InsertDate { get; set; }
         public DateTime UpdateDate { get; set; }
-        public Categoria Categoria { get; set; } = new Categoria(); // Produto pode ter apenas 1 Categoria 
 
-        public List<Imagem> Imagens { get; set; } = new List<Imagem>();// Coleção de imagem
+        public Guid FornecedorId { get; set; }
+
+        public Guid IdCategoria { get; set; }
+
+        public IEnumerable<Imagem> Imagens { get; set; } = new List<Imagem>();// Coleção de imagem
+
+        public string Imagem{ get; set; } //Seleção das imagens no cadastro do novo produto
     }
 }

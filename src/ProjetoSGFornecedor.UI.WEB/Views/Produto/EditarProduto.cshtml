@@ -9,7 +9,7 @@
 {
     <div class="input-group flex-nowrap">
         <span class="input-group-text" id="addon-wrapping">IdProduto</span>
-        <input asp-for="@Model.IdProduto" readonly="readonly" type = "text">
+        <input asp-for="@Model.IdProduto"  class="form-control" readonly="readonly" type = "text">
     </div>
     <br>
     <br>
@@ -33,6 +33,13 @@
         <input asp-for="@Model.PrecoCompra" id="PrecoCompra" class="form-control"  type="text" name="PrecoCompra"> 
         <br>
         <br>
+        @Html.DropDownListFor(x => x.IdCategoria, new SelectList(ViewBag.ListaCategorias, "IdCategoria", "Nome"))
+        <br>
+        @Html.DropDownListFor(x => x.FornecedorId, new SelectList(ViewBag.ListaFornecedores, "FornecedorId", "NomeFantasia"))
+
+        <label for="Imagem" class="form-label">Imagem</label>
+        <input asp-for= "@Model.Imagem" id="Imagem"  class="form-control" type="text" name="Imagem">
+
        @*  <label for="InsertDate" class="form-label">InsertDate</label>
          <input asp-for= "@Model.InsertDate"  class="form-control" readonly="readonly" type ="date">
         <br>

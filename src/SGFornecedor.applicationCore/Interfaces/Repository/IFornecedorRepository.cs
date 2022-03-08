@@ -27,7 +27,7 @@ namespace SGFornecedor.applicationCore.Interfaces.Repository
         void RemoverFisico(FornecedorFisico entity);
 
 
-        //FORNECEDOR jURIDICO
+        //FORNECEDOR JURIDICO
         FornecedorJuridico AdicionarJuridico(FornecedorJuridico entity);
 
         void AtualizarJuridico(FornecedorJuridico entity);
@@ -43,6 +43,7 @@ namespace SGFornecedor.applicationCore.Interfaces.Repository
         List<Telefone> BuscarTelefones(Expression<Func<Telefone, bool>> predicado);
 
         Endereco BuscarEndereco(Expression<Func<Endereco, bool>> predicado);
+
         Email BuscarEmail(Expression<Func<Email, bool>> predicado);
 
         void AtualizarTelefones(List<Telefone> lista);
@@ -51,5 +52,7 @@ namespace SGFornecedor.applicationCore.Interfaces.Repository
         void RemoverEndereco(Endereco entity);
         void RemoverEmail(Email entity);
         void RemoverTelefones(List<Telefone> lista);
+
+        List<RelatorioFornecedorProduto> RelatorioFornecedorProduto();
     }
 }
